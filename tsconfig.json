@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "esnext",  // Adjust based on your target browsers
+      "module": "esnext",  // Or "commonjs" for Node.js library
+      "lib": ["dom", "dom.iterable", "esnext"],  // Include necessary libraries
+      "outDir": "dist",     // Output directory for compiled JavaScript
+      "sourceMap": true,   // Generate source maps for debugging
+      "declaration": true,  // Generate type definition files (.d.ts)
+      "strict": true,       // Enable strict type checking
+      "noImplicitAny": true, // Disallow implicit 'any' type
+      "esModuleInterop": true, // Allow for modern and legacy module systems
+      "allowSyntheticDefaultImports": true, // Allow default imports
+      "skipLibCheck": true   // Avoid checking for missing library files
+    },
+    "include": ["src/**/*.ts"],  // Include all TypeScript files in the src directory
+    "exclude": ["node_modules/**"] // Exclude the node_modules directory
+  }
