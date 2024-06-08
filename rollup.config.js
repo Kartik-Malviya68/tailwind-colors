@@ -1,24 +1,49 @@
-import typescript from '@rollup/plugin-typescript'
-import commonjs from '@rollup/plugin-commonjs';
+import resolve from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
+import typescript from "@rollup/plugin-typescript";
+import dts from "rollup-plugin-dts";
 
-export default {
-  input: 'src/index.ts',
-  output: [
-    {
-      file: 'dist/index.cjs',
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
-    },
-    {
-      file: 'dist/index.esm',
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true,
-    },
-  ],
-  plugins: [
-    typescript({ exclude: ['**/node_modules/**'] }),
-    commonjs(),
-  ],
-};
+//NEW
+import terser from "@rollup/plugin-terser";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+
+const packageJson = require("./package.json");
+import alias from "@rollup/plugin-alias";
+
+export default [
+  {
+    input: "./src/index.ts",
+    output: [
+      {
+        file: packageJson.main,
+        format: "esm",
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      // NEW
+      typescript(),
+      peerDepsExternal(),
+
+      resolve(),
+      commonjs(),
+
+      // NEW
+      terser(),
+
+      // aliasing
+      alias({
+        resolve: [".jsx", ".tsx", ".js", ".jsx"],
+        entries: {
+          "@src": "./src",
+        },
+      }),
+    ],
+  },
+  {
+    input: "dist/cjs/types/src/index.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "esm" }],
+    plugins: [dts.default()],
+    external: [/\.css$/],
+  },
+];

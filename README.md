@@ -5,4 +5,4 @@ A curated collection of pre-defined color palettes for Tailwind CSS, designed to
 ## Installation
 
 ```bash
-npm install tailwind-color-bank
+npm install tailwind-color-register

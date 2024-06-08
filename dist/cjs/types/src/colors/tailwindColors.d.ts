@@ -1,7 +1,7 @@
 /**
  * Color scale from 50 to 950
  */
-interface ColorScale {
+export interface ColorScale {
     50: string;
     100: string;
     200: string;
@@ -17,7 +17,7 @@ interface ColorScale {
 /**
  * Tailwind CSS Colors
  */
-declare const TailwindColors: {
+export declare const TailwindColors: {
     /**
      * @description Black color
      * @preview ![black](https://placehold.co/24x24/000000/000000)
@@ -184,5 +184,3 @@ declare const TailwindColors: {
      */
     slate: ColorScale;
 };
-
-export { TailwindColors as default };
